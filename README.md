@@ -161,7 +161,7 @@ Construir una base sólida en:
 **ThreatStalker**
 Cybersecurity & Backend Engineering (Junior–Intermedio)
 
-GitHub: https://github.com/TU-USUARIO
+GitHub: https://github.com/CyberZenithAI
 
 ---
 
