@@ -23,6 +23,12 @@ Este proyecto forma parte de mi desarrollo como ingeniero en formación, aplican
 
 ---
 
+## 📖 Documentación
+
+* [⚡ Quick Start](docs/quickstart.md) — Guía rápida para ejecutar el proyecto
+
+---
+
 ## 🧠 Capacidades principales
 
 * 🔍 Análisis de dominios sospechosos
