@@ -1,46 +1,54 @@
-# 🛡️ PhishGuard V5 — Autonomous Phishing Detection Platform
+# 🛡️ PhishGuard V5 — Plataforma de Detección de Phishing
+
+<p align="center">
+  <img src="https://img.icons8.com/fluency/96/hacker.png" width="80"/>
+</p>
+
+<p align="center">
+  <b>Developed by ThreatStalker</b>
+</p>
 
 ![Docker](https://img.shields.io/badge/Docker-ready-blue)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-deployed-green)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-concepts-green)
 ![Python](https://img.shields.io/badge/Python-3.11-yellow)
-![Status](https://img.shields.io/badge/Status-Production--Ready-brightgreen)
+![Status](https://img.shields.io/badge/Status-Cloud--Ready-brightgreen)
 
 ---
 
-## 🚀 Overview
+## 🚀 Descripción
 
-**PhishGuard V5** is an advanced cybersecurity platform designed to detect phishing domains and malicious email indicators using a modular, scalable, and cloud-ready architecture.
+**PhishGuard V5** es una plataforma de ciberseguridad enfocada en la detección de dominios phishing e indicadores maliciosos en correos electrónicos.
 
-This version introduces **enterprise-grade infrastructure**, including containerization, orchestration, observability, and secure API access.
-
----
-
-## 🧠 Core Capabilities
-
-* 🔍 Domain analysis & phishing detection engine
-* 📧 Email parsing & indicator extraction
-* ⚙️ Asynchronous worker processing
-* 📊 Real-time metrics (Prometheus)
-* 🔐 JWT-based API security
-* ⚡ Redis caching layer
-* ☸️ Kubernetes deployment ready
-* 🔄 CI/CD automation (GitHub Actions)
+Este proyecto forma parte de mi desarrollo como ingeniero en formación, aplicando conceptos modernos de backend, seguridad y arquitectura cloud.
 
 ---
 
-## 🏗️ Architecture
+## 🧠 Capacidades principales
+
+* 🔍 Análisis de dominios sospechosos
+* 📧 Procesamiento de correos electrónicos
+* ⚙️ Procesamiento asíncrono con workers
+* 📊 Métricas con Prometheus
+* 🔐 Protección de endpoints con JWT
+* ⚡ Redis como sistema de cache y cola
+* ☸️ Preparado para Kubernetes (nivel conceptual)
+* 🔄 CI/CD básico con GitHub Actions
+
+---
+
+## 🏗️ Arquitectura
 
 ```
-Client → FastAPI → Pipeline Engine → Redis → Worker
-                      ↓
-               Detection Modules
-                      ↓
-          Scoring + Threat Intelligence
+Cliente → API (FastAPI) → Pipeline → Redis → Worker
+                          ↓
+                   Módulos de análisis
+                          ↓
+                  Scoring + Inteligencia
 ```
 
 ---
 
-## 📂 Project Structure
+## 📂 Estructura del proyecto
 
 ```
 phishguard_v5/
@@ -54,10 +62,10 @@ phishguard_v5/
 │   ├── email/
 │   └── worker/
 │
-├── k8s/              # Kubernetes manifests
-├── monitoring/       # Prometheus & Grafana
-├── security/         # Secrets management
-├── .github/          # CI/CD pipelines
+├── k8s/
+├── monitoring/
+├── security/
+├── .github/
 │
 ├── Dockerfile
 ├── docker-compose.yml
@@ -66,15 +74,13 @@ phishguard_v5/
 
 ---
 
-## 🐳 Local Development (Docker)
-
-### 1. Build & Run
+## 🐳 Ejecución local
 
 ```bash
 docker-compose up --build
 ```
 
-### 2. API доступ
+API disponible en:
 
 ```
 http://localhost:8000
@@ -82,7 +88,7 @@ http://localhost:8000
 
 ---
 
-## ☸️ Kubernetes Deployment
+## ☸️ Kubernetes (conceptual)
 
 ```bash
 kubectl apply -f k8s/
@@ -90,77 +96,88 @@ kubectl apply -f monitoring/
 kubectl apply -f security/
 ```
 
----
-
-## 🔐 Security
-
-* JWT authentication for protected endpoints
-* Secrets managed via Kubernetes
-* Non-root Docker containers
-* Isolated services architecture
+> Implementación basada en aprendizaje y buenas prácticas.
 
 ---
 
-## 📊 Observability
+## 🔐 Seguridad
 
-* **Prometheus** for metrics collection
-* **Grafana** for visualization
-* Custom request tracking
-
----
-
-## 🔄 CI/CD Pipeline
-
-Automated with GitHub Actions:
-
-* Build Docker image
-* Simulated push to registry
-* Kubernetes deployment
+* Autenticación JWT
+* Uso de secrets (variables de entorno)
+* Contenedores sin privilegios root
+* Separación de servicios
 
 ---
 
-## ⚙️ Tech Stack
+## 📊 Observabilidad
 
-* **Backend:** FastAPI (Python)
-* **Queue/Cache:** Redis
-* **Containerization:** Docker
-* **Orchestration:** Kubernetes
-* **Monitoring:** Prometheus + Grafana
-* **CI/CD:** GitHub Actions
+* Prometheus (métricas)
+* Grafana (visualización)
+* Tracking básico de requests
 
 ---
 
-## 📈 Roadmap (V6)
+## 🔄 CI/CD
 
-* Multi-cloud deployment
-* Zero Trust architecture
-* AI-based phishing detection (ML models)
-* Global threat intelligence feeds (MISP integration)
-
----
-
-## 🎯 Use Cases
-
-* Security research & phishing analysis
-* Email security systems
-* SOC automation pipelines
-* Cybersecurity portfolio project
+* Build Docker
+* Automatización básica
+* Simulación de despliegue
 
 ---
 
-## 👨‍💻 Author
+## ⚙️ Tecnologías
 
-Developed as an advanced cybersecurity engineering project focused on real-world architecture and scalability.
-
----
-
-## ⚠️ Disclaimer
-
-This project is for educational and research purposes only.
-Do not use for malicious activities.
+* FastAPI (Python)
+* Redis
+* Docker
+* Kubernetes (conceptual)
+* Prometheus + Grafana
+* GitHub Actions
 
 ---
 
-## ⭐ Final Note
+## 🧠 Contexto de aprendizaje
 
-PhishGuard V5 represents a transition from a simple detection tool to a **production-ready cybersecurity platform**, aligning with modern DevSecOps and cloud-native practices.
+Este proyecto fue desarrollado como parte de mi crecimiento técnico.
+
+* Uso de IA como asistente de desarrollo
+* Validación manual de arquitectura
+* Enfoque en entender cada componente
+
+---
+
+## 🎯 Objetivo
+
+Construir una base sólida en:
+
+* Backend engineering
+* Seguridad aplicada
+* Arquitecturas modernas
+
+---
+
+## 👨‍💻 Autor
+
+**ThreatStalker**
+Cybersecurity & Backend Engineering (Junior–Intermedio)
+
+GitHub: https://github.com/TU-USUARIO
+
+---
+
+## 🧩 Branding
+
+PhishGuard V5 forma parte de los proyectos desarrollados bajo el alias **ThreatStalker**, enfocados en ciberseguridad y sistemas escalables.
+
+---
+
+## ⚠️ Aviso
+
+Proyecto educativo.
+No usar con fines maliciosos.
+
+---
+
+## ⭐ Nota final
+
+PhishGuard V5 representa un paso importante en mi evolución como desarrollador, integrando backend, seguridad y conceptos cloud en un solo sistema.
