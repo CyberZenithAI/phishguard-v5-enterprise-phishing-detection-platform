@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: phishguard
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: phishguard:latest
+        ports:
+          - containerPort: 8000
+        envFrom:
+          - secretRef:
+              name: phishguard-secrets
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"

@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+dnspython
+tldextract
+python-Levenshtein
+redis
+pydantic

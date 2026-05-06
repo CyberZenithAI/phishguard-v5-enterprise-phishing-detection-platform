@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prometheus
+  namespace: phishguard
+spec:
+  containers:
+  - name: prometheus
+    image: prom/prometheus
+    ports:
+      - containerPort: 9090

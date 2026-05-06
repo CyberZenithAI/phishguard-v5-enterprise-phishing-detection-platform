@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: phishguard_api
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - JWT_SECRET=supersecurekey
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  worker:
+    build: .
+    container_name: phishguard_worker
+    command: python -m app.worker.worker
+    environment:
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: phishguard_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
