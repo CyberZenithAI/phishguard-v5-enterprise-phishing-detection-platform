@@ -1,4 +1,4 @@
-# 🛡️ PhishGuard V5 — Plataforma de Detección de Phishing
+# 🛡️ PhishGuard V0.5 — Plataforma de Detección de Phishing
 
 <p align="center">
   <img src="https://img.icons8.com/fluency/96/hacker.png" width="80"/>
@@ -17,7 +17,7 @@
 
 ## 🚀 Descripción
 
-**PhishGuard V5** es una plataforma de ciberseguridad enfocada en la detección de dominios phishing e indicadores maliciosos en correos electrónicos.
+**PhishGuard V0.5** es una plataforma de ciberseguridad enfocada en la detección de dominios phishing e indicadores maliciosos en correos electrónicos.
 
 Este proyecto forma parte de mi desarrollo como ingeniero en formación, aplicando conceptos modernos de backend, seguridad y arquitectura cloud.
 
@@ -57,7 +57,7 @@ Cliente → API (FastAPI) → Pipeline → Redis → Worker
 ## 📂 Estructura del proyecto
 
 ```
-phishguard_v5/
+phishguard_v0.5/
 │
 ├── app/
 │   ├── main.py
@@ -173,7 +173,7 @@ GitHub: https://github.com/CyberZenithAI
 
 ## 🧩 Branding
 
-PhishGuard V5 forma parte de los proyectos desarrollados bajo el alias **ThreatStalker**, enfocados en ciberseguridad y sistemas escalables.
+PhishGuard V0.5 forma parte de los proyectos desarrollados bajo el alias **ThreatStalker**, enfocados en ciberseguridad y sistemas escalables.
 
 ---
 
@@ -186,4 +186,4 @@ No usar con fines maliciosos.
 
 ## ⭐ Nota final
 
-PhishGuard V5 representa un paso importante en mi evolución como desarrollador, integrando backend, seguridad y conceptos cloud en un solo sistema.
+PhishGuard V0.5 representa un paso importante en mi evolución como desarrollador, integrando backend, seguridad y conceptos cloud en un solo sistema.
