@@ -1,0 +1,104 @@
+<!-- templates/dashboard.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self'; connect-src 'self' ws: wss:; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://cdn.jsdelivr.net;"
+    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PhishGuard V5.1 Enterprise</title>
+
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/widgets/widgets.css">
+    <link rel="stylesheet" href="/static/css/widgets/charts.css">
+    <link rel="stylesheet" href="/static/css/widgets/realtime.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+
+<body>
+
+<div class="dashboard-grid">
+
+    <section class="widget risk-widget">
+        <h2>Risk Score</h2>
+        <div id="riskGauge"></div>
+        <div id="riskTrend"></div>
+    </section>
+
+    <section class="widget live-feed-widget">
+        <h2>Live Threat Feed</h2>
+        <div id="liveThreatFeed"></div>
+    </section>
+
+    <section class="widget ioc-table-widget">
+        <div class="table-toolbar">
+            <input
+                type="text"
+                id="iocSearch"
+                placeholder="Search IOC..."
+            >
+            <button id="exportCSV">CSV</button>
+            <button id="exportJSON">JSON</button>
+        </div>
+
+        <table id="iocTable">
+            <thead>
+                <tr>
+                    <th>IOC</th>
+                    <th>Type</th>
+                    <th>Score</th>
+                    <th>Source</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="iocTableBody"></tbody>
+        </table>
+    </section>
+
+    <section class="widget">
+        <h2>SPF Failures</h2>
+        <div id="spfChart"></div>
+    </section>
+
+    <section class="widget">
+        <h2>DKIM Failures</h2>
+        <div id="dkimChart"></div>
+    </section>
+
+    <section class="widget">
+        <h2>Worker Status</h2>
+        <div id="workerStatus"></div>
+    </section>
+
+    <section class="widget">
+        <h2>Redis Health</h2>
+        <div id="redisHealth"></div>
+    </section>
+
+    <section class="widget">
+        <h2>API Latency</h2>
+        <div id="latencyChart"></div>
+    </section>
+
+    <section class="widget">
+        <h2>Threat Timeline</h2>
+        <div id="timelineChart"></div>
+    </section>
+
+    <section class="widget">
+        <h2>Top Malicious Domains</h2>
+        <div id="topDomains"></div>
+    </section>
+
+</div>
+
+<script type="module" src="/static/js/dashboard.js"></script>
+
+</body>
+</html>
