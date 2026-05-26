@@ -4,6 +4,11 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
 
+#ENV PYTHONDONTWRITEBYTECODE=1
+#ENV PYTHONUNBUFFERED=1
+# NO secrets in image
+# ONLY runtime injection via orchestrator
+
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
