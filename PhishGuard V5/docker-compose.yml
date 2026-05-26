@@ -1,31 +1,68 @@
-version: "3.9"
-
 services:
-  api:
-    build: .
+
+  phishguard_api:
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
     container_name: phishguard_api
+
+    restart: unless-stopped
+
     ports:
       - "8000:8000"
-    environment:
-      - REDIS_HOST=redis
-      - JWT_SECRET=supersecurekey
-    depends_on:
-      - redis
-    restart: unless-stopped
 
-  worker:
-    build: .
-    container_name: phishguard_worker
-    command: python -m app.worker.worker
-    environment:
-      - REDIS_HOST=redis
+    env_file:
+      - .env
+
     depends_on:
       - redis
-    restart: unless-stopped
+
+    volumes:
+      - .:/app
+
+    environment:
+      - PYTHONPATH=/app
+      - ENVIRONMENT=production
+      - PYTHONUNBUFFERED=1
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+    networks:
+      - phishguard_net
 
   redis:
+
     image: redis:7-alpine
+
     container_name: phishguard_redis
+
+    restart: unless-stopped
+
+    command: redis-server --appendonly yes
+
     ports:
       - "6379:6379"
-    restart: unless-stopped
+
+    volumes:
+      - redis_data:/data
+
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+
+    networks:
+      - phishguard_net
+
+volumes:
+  redis_data:
+
+networks:
+  phishguard_net:
