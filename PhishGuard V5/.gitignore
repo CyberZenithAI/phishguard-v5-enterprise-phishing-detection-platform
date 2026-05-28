@@ -1,2 +1,13 @@
 .env
 .env.*
+*.pem
+*.key
+*.crt
+*.p12
+
+node_modules/
+__pycache__/
+dist/
+build/
+
+venv/
