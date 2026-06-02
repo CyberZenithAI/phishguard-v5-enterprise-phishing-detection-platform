@@ -1,62 +1,82 @@
-Aquí tienes el **README.md completo en un solo bloque listo para copiar y pegar directamente en GitHub**:
-
 ````md
 # 🛡️ PhishGuard V0.5
 
-> Enterprise-grade Phishing Detection & Threat Intelligence Platform
+> Enterprise-Grade Phishing Detection & Threat Intelligence Platform  
+> Secure • Scalable • Cloud-Ready • Modular • SOC-inspired Architecture
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Production-green)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
 ![Cloudflare](https://img.shields.io/badge/Cloudflare-Tunnel-orange)
+![Redis](https://img.shields.io/badge/Redis-Queue-red)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
 ---
 
 ## 🚀 Overview
 
-PhishGuard V0.5 is a cybersecurity platform designed to detect phishing domains, malicious indicators, and suspicious email patterns using a modular backend architecture.
+**PhishGuard V0.5** is a cybersecurity backend platform designed to detect phishing domains, malicious URLs, and suspicious email patterns using a modular and scalable architecture.
 
-Built with scalability, security, and cloud deployment in mind.
+It simulates a lightweight Security Operations Center (SOC) pipeline, combining real-time processing, asynchronous workers, and threat scoring logic.
+
+Built for learning, experimentation, and production-grade architectural practice.
+
+---
+
+## 🎯 Objectives
+
+- Detect phishing and suspicious domains in real time  
+- Analyze email-based threat indicators  
+- Provide structured risk scoring outputs  
+- Demonstrate scalable backend architecture  
+- Simulate SOC-like processing pipelines  
 
 ---
 
 ## 🧠 Key Features
 
-- 🔍 Real-time phishing domain analysis
-- 📧 Email threat parsing & inspection
-- ⚙️ Async processing with worker queues
-- 🧠 Risk scoring engine (heuristics + rules)
-- ⚡ Redis-based caching & queue system
-- 📊 Prometheus-ready metrics support
-- 🔐 JWT-secured API endpoints
-- ☁️ Cloudflare Tunnel deployment ready
-- 🐳 Fully containerized with Docker
+- 🔍 Real-time phishing domain analysis  
+- 📧 Email threat parsing and inspection engine  
+- ⚙️ Asynchronous processing with worker architecture  
+- 🧠 Rule-based risk scoring system  
+- ⚡ Redis queue for background processing  
+- 📊 Metrics-ready design (Prometheus-compatible)  
+- 🔐 JWT-secured API endpoints  
+- ☁️ Cloudflare Tunnel deployment support (no open ports required)  
+- 🐳 Fully containerized with Docker & Docker Compose  
 
 ---
 
 ## 🏗️ Architecture
 
 ```text
-Client → FastAPI Gateway → Redis Queue → Worker Engine
-                                 ↓
-                         Threat Intelligence Engine
-                                 ↓
-                          Risk Scoring System
-                                 ↓
-                      Response API (JSON Output)
+Client Request
+      ↓
+FastAPI Gateway
+      ↓
+Redis Queue System
+      ↓
+Worker Processing Engine
+      ↓
+Threat Intelligence Module
+      ↓
+Risk Scoring Engine
+      ↓
+Structured JSON Response
 ````
 
 ---
 
 ## ⚙️ Tech Stack
 
-* Backend: FastAPI (Python)
-* Queue System: Redis
-* Containerization: Docker & Docker Compose
-* Security: JWT Authentication
-* Observability: Prometheus (optional)
-* Deployment: Cloudflare Tunnel / VPS / Cloud Server
+| Layer         | Technology              |
+| ------------- | ----------------------- |
+| Backend       | FastAPI (Python)        |
+| Queue System  | Redis                   |
+| Containers    | Docker / Docker Compose |
+| Security      | JWT Authentication      |
+| Observability | Prometheus (optional)   |
+| Deployment    | Cloudflare Tunnel / VPS |
 
 ---
 
@@ -87,30 +107,38 @@ http://localhost:8000
 
 ---
 
-## 🌐 Cloud Deployment (FREE)
+## 🌐 Deployment Options (Cloudflare FREE)
 
-### 🟡 Option 1 — Temporary Public URL
+### 🟡 Option 1 — Temporary Public URL (Development)
+
+Expose your local API instantly:
 
 ```bash
 cloudflared tunnel --url http://localhost:8000
 ```
 
-Result:
+Example output:
 
 ```text
 https://random-name.trycloudflare.com
 ```
 
+✔ No setup required
+✔ No domain needed
+✔ Ideal for testing and demos
+
 ---
 
-### 🔵 Option 2 — Production Tunnel
+### 🔵 Option 2 — Cloudflare Tunnel (Production-Ready)
+
+Secure persistent tunnel without exposing ports:
 
 ```bash
 cloudflared tunnel login
 cloudflared tunnel create phishguard
 ```
 
-Config:
+### Configuration:
 
 ```yaml
 tunnel: phishguard
@@ -121,7 +149,7 @@ ingress:
   - service: http_status:404
 ```
 
-Run:
+### Run tunnel:
 
 ```bash
 cloudflared tunnel run phishguard
@@ -129,7 +157,7 @@ cloudflared tunnel run phishguard
 
 ---
 
-### 🟢 Option 3 — Custom Domain
+### 🟢 Option 3 — Custom Domain (Enterprise Setup)
 
 ```text
 https://phishguard.yourdomain.com
@@ -139,26 +167,28 @@ Powered by Cloudflare DNS + Tunnel.
 
 ---
 
-## 🔐 Security Design
+## 🔐 Security Architecture
 
-* JWT authentication per request
-* Isolated Docker containers
-* Redis internal network only
-* Environment variables (.env)
-* Cloudflare edge protection layer
+* JWT authentication per API request
+* Isolated Docker container environment
+* Internal-only Redis communication (no public exposure)
+* Environment variable-based configuration (.env)
+* Cloudflare edge-layer protection
+* No direct port exposure in production deployments
 
 ---
 
 ## 📂 Project Structure
 
-```
+```text
 phishguard_v0.5/
 │
-├── app/
-├── worker/
-├── security/
-├── monitoring/
-├── k8s/
+├── app/              # Core FastAPI application
+├── worker/           # Background processing engine
+├── security/         # Authentication & security logic
+├── monitoring/       # Metrics and observability
+├── k8s/              # Kubernetes deployment manifests
+│
 ├── docker-compose.yml
 ├── Dockerfile
 └── README.md
@@ -170,7 +200,7 @@ phishguard_v0.5/
 
 ### Request
 
-```bash
+```http
 POST /analyze
 ```
 
@@ -180,6 +210,8 @@ POST /analyze
 }
 ```
 
+---
+
 ### Response
 
 ```json
@@ -188,7 +220,8 @@ POST /analyze
   "threat_level": "HIGH",
   "indicators": [
     "newly_registered_domain",
-    "suspicious_redirect"
+    "suspicious_redirect",
+    "obfuscated_url_pattern"
   ]
 }
 ```
@@ -200,36 +233,28 @@ POST /analyze
 * [x] Core phishing detection engine
 * [x] Dockerized architecture
 * [x] Cloudflare Tunnel integration
-* [ ] ML-based detection layer
-* [ ] Web dashboard UI
-* [ ] SIEM integration
+* [ ] Machine Learning-based detection layer
+* [ ] Web dashboard (SOC UI)
+* [ ] SIEM integration support
 * [ ] Kubernetes production deployment
+* [ ] Multi-tenant architecture
 
 ---
 
 ## ⚠️ Disclaimer
 
-This project is intended for educational and defensive cybersecurity purposes only.
-It must not be used for malicious activities.
+This project is developed strictly for **educational, research, and defensive cybersecurity purposes**.
+
+Any malicious or unauthorized use is strictly prohibited.
 
 ---
 
 ## 👨‍💻 Author
 
-ThreatStalker
+**ThreatStalker**
 Cybersecurity & Backend Engineering
 
 GitHub: [https://github.com/CyberZenithAI](https://github.com/CyberZenithAI)
 
 ```
-
----
-
-Si quieres el siguiente upgrade, puedo darte:
-
-👉 README con UI tipo SaaS (ultra premium)  
-👉 o GitHub Actions CI/CD automático  
-👉 o landing page web para tu proyecto  
-
-Solo dime.
 ```
