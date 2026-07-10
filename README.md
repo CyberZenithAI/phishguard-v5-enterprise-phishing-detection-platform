@@ -148,39 +148,88 @@ Puedes extender los módulos de inteligencia implementando la interfaz `ThreatIn
 
 A continuación se resumen los endpoints principales. La especificación completa está disponible en `/docs`.
 
-### Autenticación
+## 🔐 Autenticación
 
-| Método | Ruta              | Descripción                     |
-|--------|-------------------|---------------------------------|
-| POST   | `/auth/token`     | Obtener JWT (username/password) |
-| POST   | `/auth/api-key`   | Generar API Key                 |
+| Método | Ruta | Descripción |
+|---------|------|-------------|
+| POST | `/auth/token` | Obtener JWT (Username/Password). |
+| POST | `/auth/api-key` | Generar API Key. |
+| POST | `/auth/google` | Autenticación mediante Google OAuth 2.0. |
+| POST | `/auth/refresh` | Renovar el Access Token. |
+| POST | `/auth/logout` | Cerrar sesión y revocar el token. |
 
-### Análisis de Phishing
+---
 
-| Método | Ruta                       | Descripción                                                       |
-|--------|----------------------------|-------------------------------------------------------------------|
-| POST   | `/analyze/domain`          | Analizar un dominio o URL                                         |
-| POST   | `/analyze/email`           | Analizar un correo completo (RAW, EML o campos JSON)              |
-| GET    | `/results/{task_id}`       | Consultar estado y resultado de una tarea asíncrona               |
+## 🛡️ Análisis de Phishing
 
-### Administración
+| Método | Ruta | Descripción |
+|---------|------|-------------|
+| POST | `/analyze/email` | Analizar un correo completo (RAW, EML o JSON). |
+| POST | `/analyze/url` | Analizar una URL sospechosa. |
+| POST | `/analyze/domain` | Analizar un dominio. |
+| POST | `/analyze/ip` | Analizar una dirección IPv4 o IPv6. |
+| POST | `/analyze/header` | Analizar únicamente las cabeceras del correo. |
+| POST | `/analyze/headers` | Validar SPF, DKIM, DMARC y Received. |
+| POST | `/analyze/reputation` | Consultar la reputación mediante Threat Intelligence. |
+| GET | `/results/{task_id}` | Consultar el estado y resultado de una tarea asíncrona. |
 
-| Método | Ruta                | Descripción                         |
-|--------|---------------------|-------------------------------------|
-| GET    | `/health`           | Health check básico                 |
-| GET    | `/metrics`          | Métricas Prometheus                 |
-| GET    | `/admin/stats`      | Estadísticas globales (admin)       |
+---
 
-**Ejemplo de solicitud de análisis de URL:**
+## 🤖 Agente Cliente
+
+| Método | Ruta | Descripción |
+|---------|------|-------------|
+| POST | `/agent/register` | Registrar un nuevo Agente Cliente. |
+| POST | `/agent/heartbeat` | Enviar estado (Heartbeat) del agente. |
+| POST | `/agent/report` | Enviar resultados de análisis al servidor. |
+| GET | `/agent/config` | Obtener la configuración actual del agente. |
+| GET | `/agent/tasks` | Obtener tareas pendientes del servidor. |
+
+---
+
+## 🌍 Threat Intelligence
+
+| Método | Ruta | Descripción |
+|---------|------|-------------|
+| GET | `/intel/providers` | Listar los proveedores de Threat Intelligence disponibles. |
+| GET | `/intel/status` | Consultar el estado de las integraciones externas. |
+| GET | `/intel/cache` | Consultar el estado de la caché de inteligencia. |
+
+---
+
+## 📊 Administración
+
+| Método | Ruta | Descripción |
+|---------|------|-------------|
+| GET | `/health` | Health Check del servicio. |
+| GET | `/metrics` | Métricas para Prometheus. |
+| GET | `/admin/stats` | Estadísticas globales del sistema. |
+| GET | `/admin/dashboard` | Resumen general del Dashboard. |
+| GET | `/admin/workers` | Estado de los Workers Celery. |
+| GET | `/admin/providers` | Estado de los proveedores de Threat Intelligence. |
+
+---
+
+## ⚙️ Monitoreo
+
+| Método | Ruta | Descripción |
+|---------|------|-------------|
+| GET | `/monitoring/prometheus` | Exponer métricas para Prometheus. |
+| GET | `/monitoring/grafana` | Estado del Dashboard de Grafana. |
+| GET | `/monitoring/logs` | Consultar los registros del sistema. |
+
+## 📖 Ejemplo de solicitud de análisis de URL
 
 ```bash
 curl -X POST "http://localhost:8000/analyze/domain" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"url": "https://sospechoso-ejemplo.com/login"}'
+  -d '{"url":"https://sospechoso-ejemplo.com/login"}'
 ```
 
-Respuesta (resumen):
+---
+
+## 📤 Respuesta (Resumen)
 
 ```json
 {
@@ -190,7 +239,9 @@ Respuesta (resumen):
 }
 ```
 
-Consulta del resultado:
+---
+
+## 📥 Consulta del Resultado
 
 ```bash
 curl "http://localhost:8000/results/c0a80121-7ac0-4b1e-bc5e-12ab34cd5678" \
