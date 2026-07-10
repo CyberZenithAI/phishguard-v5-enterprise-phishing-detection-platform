@@ -1,6 +1,6 @@
 # 🛡️ PhishGuard Enterprise — Plataforma de Detección de Phishing en Tiempo Real
 
-![Version](https://img.shields.io/badge/version-5.0.0-blue)
+![Version](https://img.shields.io/badge/version-0.9.0-blue)
 ![Docker](https://img.shields.io/badge/docker-ready-brightgreen)
 ![Kubernetes](https://img.shields.io/badge/kubernetes-deployable-326ce5)
 ![License](https://img.shields.io/badge/license-Apache%202.0-yellow)
