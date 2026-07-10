@@ -268,26 +268,51 @@ El archivo de workflow se encuentra en `.github/workflows/ci-cd.yml` y es fácil
 
 ```
 phishguard-enterprise/
-├── app/
-│   ├── api/                # Routers y dependencias FastAPI
-│   ├── core/               # Configuración, seguridad, intel providers
-│   ├── models/             # Modelos Pydantic y SQLAlchemy
-│   ├── tasks/              # Definición de tareas Celery
-│   ├── analysis/           # Módulos de análisis (dominio, email, URL)
-│   ├── worker/             # Entrada del worker Celery
-│   ├── monitoring/         # Instrumentación Prometheus
-│   └── main.py             # Punto de entrada de la API
-├── k8s/                    # Manifiestos Kubernetes
-├── monitoring/             # Configuración Prometheus, reglas, dashboards
-├── security/               # Políticas de red y RBAC
-├── tests/                  # Tests unitarios, integración, contract
-├── scripts/                # Utilidades de despliegue y migraciones
-├── docker-compose.yml
-├── Dockerfile
-├── Dockerfile.worker
-├── requirements.txt
-├── .env.example
-└── README.md
+│
+├── app/                           # Código fuente principal de PhishGuard AI
+│   ├── api/                       # Endpoints REST, routers y dependencias de FastAPI
+│   ├── analysis/                  # Motores de análisis (Email, URL, Dominio, IP, Headers, HTML)
+│   ├── auth/                      # Autenticación (JWT, OAuth2, API Keys y permisos)
+│   ├── cache/                     # Gestión de caché con Redis
+│   ├── core/                      # Configuración global, constantes y utilidades principales
+│   ├── database/                  # Modelos SQLAlchemy, conexión y acceso a la base de datos
+│   ├── exceptions/                # Excepciones personalizadas y manejo global de errores
+│   ├── models/                    # Modelos de datos (Pydantic y SQLAlchemy)
+│   ├── monitoring/                # Métricas Prometheus, logs y observabilidad
+│   ├── providers/                 # Integraciones con Threat Intelligence (VirusTotal, OTX, etc.)
+│   ├── schemas/                   # Esquemas Pydantic para Requests y Responses
+│   ├── scoring/                   # Motor de cálculo del Risk Score y reglas de correlación
+│   ├── services/                  # Lógica de negocio y orquestación de análisis
+│   ├── tasks/                     # Tareas asíncronas de Celery
+│   ├── utils/                     # Funciones auxiliares, validadores y helpers
+│   ├── worker/                    # Inicialización y configuración de los Workers Celery
+│   └── main.py                    # Punto de entrada principal de la API
+│
+├── frontend/                      # Interfaz Web (Login, Dashboard, Admin y Cliente)
+│
+├── docs/                          # Documentación técnica, arquitectura y API
+│
+├── .github/                       # Automatización CI/CD con GitHub Actions
+│   └── workflows/                 # Pipelines de integración y despliegue continuo
+│
+├── k8s/                           # Manifiestos Kubernetes (Deployments, Services, Ingress, HPA)
+│
+├── monitoring/                    # Configuración de Prometheus, Grafana y AlertManager
+│
+├── security/                      # RBAC, Network Policies y configuraciones de seguridad
+│
+├── scripts/                       # Scripts de instalación, despliegue y mantenimiento
+│
+├── tests/                         # Pruebas unitarias, integración, rendimiento y seguridad
+│
+├── Dockerfile                     # Imagen Docker para la API
+├── Dockerfile.worker              # Imagen Docker para los Workers Celery
+├── docker-compose.yml             # Orquestación de servicios para desarrollo local
+├── requirements.txt               # Dependencias del proyecto Python
+├── .env.example                   # Plantilla de variables de entorno
+├── .gitignore                     # Archivos y carpetas ignorados por Git
+├── LICENSE                        # Licencia oficial del proyecto
+└── README.md                      # Documentación principal y guía de uso
 ```
 
 ---
