@@ -17,3 +17,22 @@ class AnalysisResult(BaseModel):
     status: str
     score: Optional[float] = None
     details: Optional[str] = None
+
+# --- Esquemas adicionales para análisis de correo electrónico ---
+
+class EmailAnalyzeRequest(BaseModel):
+    raw_email: str
+
+class EmailHeaderInfo(BaseModel):
+    spf: Optional[str] = None
+    dkim: Optional[str] = None
+    dmarc: Optional[str] = None
+    from_domain: Optional[str] = None
+
+class EmailAnalysisResponse(BaseModel):
+    risk_score: float
+    risk_level: str
+    headers: EmailHeaderInfo
+    urls_found: list[str]
+    domain_analysis: list[dict]  # resultados rápidos de cada dominio
+    summary: str
