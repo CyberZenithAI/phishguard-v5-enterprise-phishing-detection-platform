@@ -1,0 +1,26 @@
+{
+  "dashboard": {
+    "title": "PhishGuard Overview",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "HTTP Requests per second",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total[1m])",
+            "legendFormat": "{{method}} {{endpoint}}"
+          }
+        ]
+      },
+      {
+        "type": "stat",
+        "title": "Avg Response Time",
+        "targets": [
+          {
+            "expr": "rate(http_request_duration_seconds_sum[1m]) / rate(http_request_duration_seconds_count[1m])"
+          }
+        ]
+      }
+    ]
+  }
+}
