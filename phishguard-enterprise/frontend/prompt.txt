@@ -1,0 +1,405 @@
+Ya pero quiero que mi Pagina Web del "phishguard-enterprise/frontend/index.html" < = Desarrollado Web en el Frontend como senior experto que no sea para nada basico e ejemplo e simulador e codigo incompleto. Quiero que sea en tiempo real llegar a funcionar de acuerdo a los "Endpoints" que tiene mi Software PhishGuard AI v0.9.0 sin que sea básico e ejemplo ó simualdor en tiempo real ultra realista efectivo e eficaz. Mantener el codigo original del codigo HTML:("<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard Enterprise v0.9.0 — Inicio de Sesión</title>
+    <style>
+        :root {
+            --bg: #0a192f;
+            --bg2: #112240;
+            --accent: #64ffda;
+            --accent-hover: #45e0b0;
+            --text: #ccd6f6;
+            --text2: #8892b0;
+            --danger: #ff6b6b;
+            --border: #233554;
+            --radius: 12px;
+            --shadow: 0 10px 40px rgba(0,0,0,0.5);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        [data-theme="light"] {
+            --bg: #f0f2f5;
+            --bg2: #ffffff;
+            --accent: #0a58ca;
+            --accent-hover: #084298;
+            --text: #1c1e21;
+            --text2: #606770;
+            --danger: #e41e3f;
+            --border: #dadde1;
+            --shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: var(--bg);
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: radial-gradient(circle at 30% 50%, rgba(100,255,218,0.03) 0%, transparent 50%);
+            transition: background var(--transition);
+        }
+        .login-container {
+            background: var(--bg2);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 440px;
+            padding: 40px 32px;
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+            animation: fadeInUp 0.5s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .login-header .logo {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 8px rgba(100,255,218,0.3));
+        }
+        .login-header h1 {
+            color: var(--accent);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .login-header p {
+            color: var(--text2);
+            margin-top: 6px;
+            font-size: 0.95rem;
+        }
+        .input-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+        label {
+            display: block;
+            color: var(--text);
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: border var(--transition), box-shadow var(--transition);
+            outline: none;
+        }
+        input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(100,255,218,0.15);
+        }
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 40px;
+            background: none;
+            border: none;
+            color: var(--text2);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        .password-strength {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background 0.3s;
+        }
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            border: none;
+            border-radius: 10px;
+            color: #0a192f;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            transition: background var(--transition), transform 0.2s;
+            margin-top: 10px;
+        }
+        .btn-login:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+        .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(0,0,0,0.2);
+            border-top-color: #0a192f;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .error-message {
+            color: var(--danger);
+            font-size: 0.9rem;
+            margin-top: 12px;
+            text-align: center;
+            min-height: 20px;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 24px;
+            color: var(--text2);
+            font-size: 0.8rem;
+        }
+        .footer-note a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .theme-toggle-login {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        @media (max-width: 500px) {
+            .login-container { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón de tema (igual que en dashboard) -->
+    <button class="theme-toggle-login" onclick="toggleTheme()" title="Cambiar modo claro/oscuro">🌓</button>
+
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo">🛡️</div>
+            <h1>PhishGuard</h1>
+            <p>Enterprise Anti‑Phishing Platform</p>
+        </div>
+
+        <!-- Campos de autenticación (mantiene IDs y estructura original) -->
+        <div class="input-group">
+            <label for="username">Usuario</label>
+            <input type="text" id="username" placeholder="admin" value="admin" autocomplete="username" required>
+        </div>
+
+        <div class="input-group">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" placeholder="••••••••" value="phishguard2024" autocomplete="current-password" required>
+            <button type="button" class="password-toggle" id="togglePassword" title="Mostrar contraseña">👁️</button>
+            <div class="password-strength">
+                <div class="password-strength-bar" id="strengthBar"></div>
+            </div>
+        </div>
+
+        <button class="btn-login" id="loginButton" onclick="login()">
+            <span id="btnText">Ingresar</span>
+        </button>
+
+        <div id="error" class="error-message"></div>
+
+        <div class="footer-note">
+            PhishGuard v0.9.0 · <a href="/docs" target="_blank">API Docs</a> · ThreatStalker
+        </div>
+    </div>
+
+    <script>
+        // --- Sincronización de tema con localStorage (misma clave que dashboard) ---
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        applyTheme(savedTheme);
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            applyTheme(next);
+            localStorage.setItem('theme', next);
+        }
+
+        // --- Mostrar/ocultar contraseña ---
+        const togglePasswordBtn = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        togglePasswordBtn.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePasswordBtn.textContent = type === 'password' ? '👁️' : '🙈';
+        });
+
+        // --- Indicador de fortaleza de contraseña (visual básico) ---
+        const strengthBar = document.getElementById('strengthBar');
+        passwordInput.addEventListener('input', () => {
+            const val = passwordInput.value;
+            let strength = 0;
+            if (val.length >= 6) strength += 25;
+            if (val.length >= 10) strength += 25;
+            if (/[A-Z]/.test(val)) strength += 25;
+            if (/[0-9]/.test(val)) strength += 25;
+            if (/[^A-Za-z0-9]/.test(val)) strength += 10;
+            strength = Math.min(100, strength);
+            strengthBar.style.width = strength + '%';
+            if (strength < 40) strengthBar.style.background = 'var(--danger)';
+            else if (strength < 70) strengthBar.style.background = '#f0a500';
+            else strengthBar.style.background = 'var(--accent)';
+        });
+        // Disparar evento inicial
+        passwordInput.dispatchEvent(new Event('input'));
+
+        // --- Lógica de login (código original mejorado con UX) ---
+        async function login() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error');
+            const loginBtn = document.getElementById('loginButton');
+            const btnText = document.getElementById('btnText');
+
+            // Validaciones rápidas
+            if (!username || !password) {
+                errorDiv.textContent = '⚠️ Complete todos los campos.';
+                return;
+            }
+
+            // UI de carga
+            loginBtn.disabled = true;
+            btnText.innerHTML = '<span class="spinner"></span> Verificando...';
+            errorDiv.textContent = '';
+
+            try {
+                const res = await fetch('/auth/token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+                });
+
+                if (!res.ok) {
+                    const errDetail = await res.text();
+                    throw new Error(errDetail.includes('invalid') ? 'Usuario o contraseña incorrectos' : 'Error de autenticación');
+                }
+
+                const data = await res.json();
+                localStorage.setItem('token', data.access_token);
+                // Redirigir al dashboard
+                window.location.href = '/dashboard.html';
+            } catch (e) {
+                errorDiv.textContent = `🔒 ${e.message}`;
+            } finally {
+                loginBtn.disabled = false;
+                btnText.textContent = 'Ingresar';
+            }
+        }
+
+        // Enter key también dispara login
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                login();
+            }
+        });
+    </script>
+</body>
+</html>") + Quiero que se le puede añadirle adicional: ("Autenticación multifactor (MFA simulado)
+
+Tras el login exitoso, mostrar un segundo paso pidiendo un código de 6 dígitos (puede ser fijo "123456" o generado con un TOTP básico en backend).
+
+Impacto: demuestra conciencia de seguridad Zero Trust.
+
+Inicio de sesión con llave de seguridad (WebAuthn/Passkeys)
+
+Añadir botón de "Iniciar con llave de seguridad" usando la API navigator.credentials. Aunque el backend aún no lo soporte, la UI y el flujo visual ya venden la idea.
+
+Impacto: innovación, phishing‑resistant.
+
+Verificación de brechas (Have I Been Pwned)
+
+Al escribir el usuario, consultar la API pública de HIBP para ver si el correo aparece en brechas (sin enviar la contraseña). Mostrar un aviso discreto.
+
+Impacto: higiene de seguridad proactiva.
+
+Indicador de fortaleza de contraseña con reglas de la empresa
+
+Añadir requisitos visuales (longitud, mayúsculas, números, caracteres especiales) que se marcan en verde al cumplirse, como en sitios corporativos.
+
+Impacto: políticas de seguridad visibles.
+
+Limitación de intentos y bloqueo temporal (frontend + backend)
+
+Contador de intentos fallidos con bloqueo de 30 segundos tras 3 fallos, mostrando un temporizador regresivo.
+
+Impacto: anti‑fuerza bruta.
+
+Animación de carga con logo animado
+
+Sustituir el spinner simple por un escudo girando o un efecto de "escaneo" mientras se autentica.
+
+Impacto: branding dinámico.
+
+Sesión persistente segura (recordarme)
+
+Checkbox "Recordar este dispositivo" que almacena un refresh token en una cookie segura (HttpOnly, Secure) gestionada por el backend.
+
+Impacto: usabilidad sin perder seguridad.
+
+Redirección inteligente post‑login
+
+Si el usuario intentó acceder a una URL protegida sin sesión, después del login redirigir exactamente allí (ej. /dashboard.html?redirect=/analyze/domain).
+
+Impacto: flujo profesional.
+
+Mensaje de bienvenida dinámico y hora del último acceso
+
+Después del login, mostrar brevemente "Bienvenido, admin. Último acceso: 2026‑07‑08 14:32 UTC".
+
+Impacto: transparencia y trazabilidad.
+
+Aviso de ubicación de inicio de sesión sospechosa
+
+Si el navegador proporciona geolocalización, comparar con un listado de países "confiables" y mostrar una alerta si es inusual.
+
+Impacto: detección de accesos anómalos.
+
+Login sin contraseña (enlace mágico)
+
+Botón "Enviar enlace de acceso" que simula el envío de un correo con un token de un solo uso.
+
+Impacto: tendencia passwordless, elimina phishing de credenciales.
+
+Modo mantenimiento/incidente simulado
+
+Banner en la parte superior "⚠️ Modo de alta seguridad activado – verificación adicional requerida" que se activa manualmente.
+
+Impacto: muestra preparación ante crisis" + Quiero las credenciales sean en una Base de Datos SQL Ligero Optimizado que las Credenciales sean: "User: admin / Password: admin123")? + Como Desarrollado senior experto en tiempo real ultra realista efectivo e eficaz que no sea para nada baisco e ejemplo e simulador e codigo incompleto.
